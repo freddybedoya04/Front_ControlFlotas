@@ -1,0 +1,20 @@
+<nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
+        <i class="pi pi-align-justify"></i>
+
+    </label>
+    <a class="enlace">
+      <!-- <img src="../../../../assets/images/logo.png" alt="" class="logo"> -->
+      <i class="pi pi-apple" style="font-size: 1.5rem"></i><h1>Apple Buga</h1>
+    </a>
+    <ul #Menu>
+      <li><a [routerLink]="['/main/ventas']" [routerLinkActive]="['active']" (click)="Ocultar()" >Ventas</a></li>
+      <li><a [routerLink]="['/main/reportes']"[routerLinkActive]="['active']" (click)="Ocultar()">Reportes</a></li>
+      <li><a [routerLink]="['/main/usuarios']" [routerLinkActive]="['active']" (click)="Ocultar()">Usuarios</a></li>
+      <li><a [routerLink]="['/login']" [routerLinkActive]="['active']" (click)="Ocultar()">Cerrar Sesion</a></li>
+    
+    </ul>
+  </nav>
+<router-outlet></router-outlet>
+<footer>Powered by Freddy Bedoya</footer>
