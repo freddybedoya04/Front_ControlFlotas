@@ -9,6 +9,10 @@ import { VentasComponent } from './components/Dashboard/ventas/ventas.component'
 import { ReportesComponent } from './components/Dashboard/reportes/reportes.component';
 import { UsuariosComponent } from './components/Dashboard/usuarios/usuarios.component';
 import { SharedModule } from './components/shared/shared.module';
+import { ConductoresComponent } from './components/Dashboard/Conductores/conductores.component';
+import { VehiculosComponent } from './components/Dashboard/vehiculos/vehiculos.component';
+import { GastosComponent } from './components/Dashboard/gastos/gastos.component';
+import { ViajesComponent } from './components/Dashboard/viajes/viajes.component';
 
 
 @NgModule({
@@ -19,6 +23,10 @@ import { SharedModule } from './components/shared/shared.module';
     VentasComponent,
     ReportesComponent,
     UsuariosComponent,
+    ConductoresComponent,
+    VehiculosComponent,
+    GastosComponent,
+    ViajesComponent,
   ],
   imports: [
     BrowserModule,
