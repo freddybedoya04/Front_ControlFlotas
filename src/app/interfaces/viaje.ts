@@ -17,5 +17,5 @@ export interface IViaje {
   VIA_Utilidades?: number;
   VIA_Habilitado?: boolean;
   VIA_TimeStand?: Date;
-  VIA_Peso?: boolean;
+  VIA_Peso?: number;
 }
