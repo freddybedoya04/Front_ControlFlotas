@@ -60,6 +60,7 @@ nav ul li a.active,nav ul li a:hover{
 main{
     height: calc(100vh - 80px);
     /* max-height:calc(100vh - 80px) ; */
+    min-height: 100%;
     overflow: auto;
 }
 footer{
@@ -103,6 +104,7 @@ footer{
         left: -100%;
         text-align: center;
         transition: all .5s;
+        z-index: 2;
     }
     nav ul li{
         display: block;
