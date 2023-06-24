@@ -16,6 +16,7 @@ export class ReportesComponent implements OnInit {
   FechaInicio: Date;
   FechaFin: Date;
   vehiculoSeleccionado: IVehiculo | undefined;
+  Indicadores;
   loading: boolean = false;
 
   public searchKeyword: string = '';
@@ -31,6 +32,13 @@ export class ReportesComponent implements OnInit {
       FechaFin: "",
       CodigoVehiculo: "",
       Conductor: ""
+    }
+    this.Indicadores = {
+      Ingresos: 0,
+      Egresos: 0,
+      Utilidades: 0,
+      Kms: 0,
+      Pagos: 0
     }
   }
 
@@ -69,13 +77,14 @@ export class ReportesComponent implements OnInit {
   }
   BuscarViajesPorVehiculo() {
     this.ConstruirFiltro();
-    this.loading=true;
+    this.loading = true;
     this._peticiones.postListarViajesVehiculo(this.Filtro).subscribe(res => {
-      this.loading=false;
-      this._peticiones.SetToast("Se encontraron "+res.length+" viajes.", 1)
+      this.loading = false;
+      this._peticiones.SetToast("Se encontraron " + res.length + " viajes.", 1)
       this.Viajes = res;
+      this.CalcularIndicadores();
     }, err => {
-      this.loading=false;
+      this.loading = false;
       this._peticiones.SetToast(err.Message, 3)
       console.log(err)
     })
@@ -84,14 +93,15 @@ export class ReportesComponent implements OnInit {
   BuscarViajesPorFecha() {
     debugger;
     this.ConstruirFiltro();
-    this.loading=true;
+    this.loading = true;
     this._peticiones.postListarViajesPorFecha(this.Filtro).subscribe(res => {
       debugger
-      this.loading=false;
-      this._peticiones.SetToast("Se encontraron "+res.length+" viajes.", 1)
+      this.loading = false;
+      this._peticiones.SetToast("Se encontraron " + res.length + " viajes.", 1)
       this.Viajes = res;
+      this.CalcularIndicadores();
     }, err => {
-      this.loading=false;
+      this.loading = false;
       this._peticiones.SetToast(err.Message, 3)
       console.log(err)
     });
@@ -101,5 +111,31 @@ export class ReportesComponent implements OnInit {
     this.Filtro.FechaInicio = this.FechaInicio.toISOString();
     this.Filtro.FechaFin = this.FechaFin.toISOString();
     this.Filtro.CodigoVehiculo = this.vehiculoSeleccionado?.veI_CodigoVehiculo ?? "";
+  }
+
+  CalcularIndicadores() {
+    this.Indicadores.Ingresos = this.Viajes.reduce((suma, viaje) => {
+      const pago = viaje.viA_ValorViaje ?? 0; // Utiliza el pago de conductor o 0 si es nulo o indefinido
+      return suma + pago;
+    }, 0);
+    this.Indicadores.Egresos = this.Viajes.reduce((suma, viaje) => {
+      let pago = viaje.viA_PagoCombustible ?? 0; 
+      pago=pago+(viaje.viA_PagoConductor ?? 0);
+      pago=pago+ (viaje.viA_PagoPeajes ?? 0);
+      pago=pago+(viaje.viA_PagoOtros ?? 0);
+      return suma + pago;
+    }, 0);
+    this.Indicadores.Utilidades  = this.Viajes.reduce((suma, viaje) => {
+      const pago = viaje.viA_Utilidades ?? 0 ; 
+      return suma + pago;
+    }, 0);
+    this.Indicadores.Kms  = this.Viajes.reduce((suma, viaje) => {
+      const pago = viaje.viA_KmRecorridos ?? 0 ; 
+      return suma + pago;
+    }, 0);
+    this.Indicadores.Pagos  = this.Viajes.reduce((suma, viaje) => {
+      const pago = viaje.viA_PagoConductor ?? 0 ; 
+      return suma + pago;
+    }, 0);
   }
 }

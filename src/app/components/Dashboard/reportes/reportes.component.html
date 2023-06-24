@@ -1,5 +1,5 @@
 <div class="Principal">
-    <h1 class="Titulo1">Reportes</h1>
+    <!-- <h1 class="Titulo1">Reportes</h1> -->
     <div class="Formulario">
         <form>
             <div>
@@ -27,6 +27,33 @@
             </div>
 
         </form>
+    </div>
+    <div class="Indicadores">
+        <p-card header="Ingresos"  class="indicador" styleClass="shadow-2">
+            <h3 class="Titulo3">
+                {{Indicadores.Ingresos | number: '1.0-0'}}
+            </h3>
+        </p-card>
+        <p-card header="Egresos"  class="indicador" styleClass="shadow-2">
+            <h3 class="Titulo3">
+                {{Indicadores.Egresos  | number: '1.0-0'}}
+            </h3>
+        </p-card>
+        <p-card header="Utilidades"  class="indicador" styleClass="shadow-2">
+            <h3 class="Titulo3">
+                {{Indicadores.Utilidades  | number: '1.0-0'}}
+            </h3>
+        </p-card>
+        <p-card header="Kms"  class="indicador" styleClass="shadow-2">
+            <h3 class="Titulo3">
+                {{Indicadores.Kms | number: '1.0-0'}}
+            </h3>
+        </p-card>
+        <p-card header="Pagos"  class="indicador" styleClass="shadow-2">
+            <h3 class="Titulo3">
+                {{Indicadores.Pagos  |  number: '1.0-0'}}
+            </h3>
+        </p-card>
     </div>
     <p-card header="Viajes Realizados"  [style]="{margin:'20px',padding:'10px'}" styleClass="shadow-2">
         <!-- <p-table [value]="Viajes" [tableStyle]="{'min-width': '50rem'}"> -->
