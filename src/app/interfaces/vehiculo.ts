@@ -1,12 +1,12 @@
 export interface IVehiculo {
-    VEI_Id: number;
-    VEI_CodigoVehiculo: string;
-    VEI_PlacaVehiculo: string;
-    VEI_Habilitado: boolean;
-    VEI_Descripcion?: string;
-    VEI_Modelo?: string;
-    VEI_PesoLimite?: number;
-    VEI_KmInicial?: number;
-    VEI_FechaIngreso?: Date;
-    VEI_TimeStand?: Date;
+    veI_Id: number;
+    veI_CodigoVehiculo: string;
+    veI_PlacaVehiculo: string;
+    veI_Habilitado: boolean;
+    veI_Descripcion?: string;
+    veI_Modelo?: string;
+    veI_PesoLimite?: number;
+    veI_KmInicial?: number;
+    veI_FechaIngreso?: Date;
+    veI_TimeStand?: Date;
   }

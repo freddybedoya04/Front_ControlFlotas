@@ -6,7 +6,9 @@ import {PasswordModule} from 'primeng/password';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from 'primeng/dropdown';
-
+import {CardModule} from 'primeng/card';
+import {TableModule} from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [],
@@ -18,7 +20,10 @@ import {DropdownModule} from 'primeng/dropdown';
     ReactiveFormsModule,
     CalendarModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    CardModule,
+    TableModule,
+    ToastModule
   ],
   exports:[
     InputTextModule,
@@ -27,7 +32,10 @@ import {DropdownModule} from 'primeng/dropdown';
     ReactiveFormsModule,
     CalendarModule,
     FormsModule,
-    DropdownModule
+    DropdownModule,
+    CardModule,
+    TableModule,
+    ToastModule
   ]
 })
 export class SharedModule { }

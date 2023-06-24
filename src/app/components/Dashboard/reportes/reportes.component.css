@@ -1,0 +1,54 @@
+.Principal{
+    background-color: #eff3f8;
+}
+.Titulo1{
+    text-align: center;
+    font-size: 3rem;
+    height: 3rem;
+    margin: 1rem;
+}
+
+form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 20px;
+    align-items: center;
+}
+form div{
+    flex: 1 0 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+form div button{
+    margin-top: 20px;
+}
+:host ::ng-deep .p-button {
+    background: #8E2DE2;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-color: white;
+    transition: all 0.5s ease-out;
+  }
+  
+  :host ::ng-deep .p-button:hover {
+    background-color: black;
+    border-color: black;
+  }
+.EncabezadoTabla{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.p-datatable .p-datatable-tbody > tr > td {
+    text-align: center !important;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+    padding: 1rem 1rem;
+}

@@ -14,7 +14,8 @@ import { VehiculosComponent } from './components/Dashboard/vehiculos/vehiculos.c
 import { GastosComponent } from './components/Dashboard/gastos/gastos.component';
 import { ViajesComponent } from './components/Dashboard/viajes/viajes.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,9 +34,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
