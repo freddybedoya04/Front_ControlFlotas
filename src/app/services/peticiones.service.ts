@@ -56,6 +56,6 @@ export class PeticionesService {
     return this.http.post<IViaje[]>(this.apiUrl + '/Viajes/ListarViajesPorVehiculo', filtro)
   }
   AgregarViaje(viaje:IViaje):Observable<IViaje>{
-    return this.http.post<IViaje>(`${this.apiUrl}${this.apiUrl}`, viaje);
+    return this.http.post<IViaje>(this.apiUrl + '/Viajes/AgregarViaje', viaje);
   }
 }
