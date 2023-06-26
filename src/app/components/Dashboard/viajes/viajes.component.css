@@ -6,7 +6,12 @@ h1{
     height: 3rem;
     margin: 1rem;
     text-align: center;
+    margin-bottom: 50px;
 }
+.ng-invalid.ng-touched {
+  border-color: red !important;
+}
+
 form {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -58,7 +63,7 @@ form {
 }
 :host ::ng-deep .p-inputtext.ng-dirty.ng-invalid {
   border-color: #e24c4c;
-  background-color: rebeccapurple;
+ 
 }
 :host ::ng-deep .p-inputtext:enabled:focus {
   outline: 0 none;

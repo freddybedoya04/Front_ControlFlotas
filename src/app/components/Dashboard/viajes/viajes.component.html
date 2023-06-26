@@ -1,74 +1,72 @@
 <div class="contenedorPricipal">
-    <h1>Ingreso de viajes</h1>
-    <form>
-        <div>
-          <label for="VIA_FechaInicio">Fecha de Inicio:</label>
-          <!-- <input type="text" pInputText id="VIA_FechaInicio" name="VIA_FechaInicio"> -->
-          <p-calendar [(ngModel)]="value" name="value" [showTime]="true" hourFormat="12"></p-calendar>
-        </div>
-        <div>
-          <label for="VIA_Empresa">Empresa:</label>
-          <input type="text" pInputText id="VIA_Empresa" name="VIA_Empresa">
-        </div>
-        <div>
-          <label for="VIA_Manifiesto">Manifiesto:</label>
-          <input type="text" pInputText id="VIA_Manifiesto" name="VIA_Manifiesto">
-        </div>
-        <div>
-          <label for="CON_CedulaConductor">Conductor :</label>
-          <p-dropdown [options]="Conductores" [(ngModel)]="conductorSeleccionado" name="CON_CedulaConductor" optionLabel="coN_NombresConductor" placeholder="Seleccione Conductor"></p-dropdown>
-        </div>
-        <div>
-          <label for="VEI_CodigoVehiculo">Código del Vehículo:</label>
-          <!-- <input type="text" pInputText id="VEI_CodigoVehiculo" name="VEI_CodigoVehiculo"> -->
-          <p-dropdown [options]="Vehiculos" [(ngModel)]="vehiculoSeleccionado" name="VEI_CodigoVehiculo" optionLabel="veI_PlacaVehiculo" placeholder="Seleccione Vehiculo"></p-dropdown>
-        </div>
-        <div>
-          <label for="VIA_Origen">Origen:</label>
-          <input type="text" pInputText id="VIA_Origen" name="VIA_Origen">
-        </div>
-        <div>
-          <label for="VIA_Destino">Destino:</label>
-          <input type="text" pInputText id="VIA_Destino" name="VIA_Destino">
-        </div>
-        <div>
-          <label for="VIA_KmRecorridos">Kilómetros Recorridos #:</label>
-          <input type="number" pInputText id="VIA_KmRecorridos" name="VIA_KmRecorridos">
-        </div>
-        <div>
-          <label for="VIA_Peso">Peso Carga (KG):</label>
-          <input type="number" pInputText id="VIA_Peso" name="VIA_Peso">
-        </div>
-        <div>
-          <label for="VIA_PagoConductor">Pago al Conductor $:</label>
-          <input type="number" pInputText id="VIA_PagoConductor" name="VIA_PagoConductor">
-        </div>
-        <div>
-          <label for="VIA_PagoCombustible">Pago de Combustible $:</label>
-          <input type="number" pInputText id="VIA_PagoCombustible" name="VIA_PagoCombustible">
-        </div>
-        <div>
-          <label for="VIA_PagoPeajes">Pago de Peajes $:</label>
-          <input type="text" pInputText id="VIA_PagoPeajes" name="VIA_PagoPeajes">
-        </div>
-        <div>
-          <label for="VIA_PagoOtros">Otros Pagos $:</label>
-          <input type="number" pInputText id="VIA_PagoOtros" name="VIA_PagoOtros">
-        </div>
-        <div>
-          <label for="VIA_DetallesViaje">Detalles del Viaje:</label>
-          <input type="text" pInputText id="VIA_DetallesViaje" name="VIA_DetallesViaje">
-        </div>
-        <div>
-          <label for="VIA_ValorViaje">Valor del Viaje $:</label>
-          <input type="number" pInputText id="VIA_ValorViaje" name="VIA_ValorViaje">
-        </div>
-    </form>
-    <div class="Botones">
-      
-      <button pButton type="submit" label="Ingresar Viaje" icon="pi pi-check" iconPos="left"  class="p-button-raised p-button-rounded"></button>
-
+  <h1>Ingreso de viajes</h1>
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit">
+    <div>
+      <label for="VIA_FechaInicio">Fecha de Inicio:</label>
+      <p-calendar formControlName="VIA_FechaInicio" [showTime]="true" hourFormat="12"></p-calendar>
     </div>
+    <div>
+      <label for="VIA_Empresa">Empresa:</label>
+      <input type="text" pInputText formControlName="VIA_Empresa" matInput autocomplete="off">
+     
+    </div>
+    <div >
+      <label for="VIA_Manifiesto">Manifiesto:</label>
+      <input type="text" pInputText formControlName="VIA_Manifiesto">
+    </div>
+    <div>
+      <label for="CON_CedulaConductor">Conductor:</label>
+      <p-dropdown formControlName="CON_CedulaConductor" [options]="Conductores" optionLabel="coN_NombresConductor" placeholder="Seleccione Conductor"></p-dropdown>
+    </div>
+    <div>
+      <label for="VEI_CodigoVehiculo">Código del Vehículo:</label>
+      <p-dropdown formControlName="VEI_CodigoVehiculo" [options]="Vehiculos" optionLabel="veI_PlacaVehiculo" placeholder="Seleccione Vehiculo"></p-dropdown>
+    </div>
+    <div>
+      <label for="VIA_Origen">Origen:</label>
+      <input type="text" pInputText formControlName="VIA_Origen">
+    </div>
+    <div>
+      <label for="VIA_Destino">Destino:</label>
+      <input type="text" pInputText formControlName="VIA_Destino">
+    </div>
+    <div>
+      <label for="VIA_KmRecorridos">Kilómetros Recorridos #:</label>
+      <input type="number" pInputText formControlName="VIA_KmRecorridos">
+    </div>
+    <div>
+      <label for="VIA_Peso">Peso Carga (KG):</label>
+      <input type="number" pInputText formControlName="VIA_Peso">
+    </div>
+    <div>
+      <label for="VIA_PagoConductor">Pago al Conductor $:</label>
+      <input type="number" pInputText formControlName="VIA_PagoConductor">
+    </div>
+    <div>
+      <label for="VIA_PagoCombustible">Pago de Combustible $:</label>
+      <input type="number" pInputText formControlName="VIA_PagoCombustible">
+    </div>
+    <div>
+      <label for="VIA_PagoPeajes">Pago de Peajes $:</label>
+      <input type="text" pInputText formControlName="VIA_PagoPeajes">
+    </div>
+    <div>
+      <label for="VIA_PagoOtros">Otros Pagos $:</label>
+      <input type="number" pInputText formControlName="VIA_PagoOtros">
+    </div>
+    <div>
+      <label for="VIA_DetallesViaje">Detalles del Viaje:</label>
+      <input type="text" pInputText formControlName="VIA_DetallesViaje">
+    </div>
+    <div>
+      <label for="VIA_ValorViaje">Valor del Viaje $:</label>
+      <input type="number" pInputText formControlName="VIA_ValorViaje">
+    </div>
+   
+  </form>
+  <div class="Botones">
+    <button pButton type="submit" label="Ingresar Viaje" icon="pi pi-check" iconPos="left" class="p-button-raised p-button-rounded" (click)="onSubmit()"></button>
+  </div>
+</div>
 
       
-</div>

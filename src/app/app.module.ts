@@ -16,6 +16,7 @@ import { ViajesComponent } from './components/Dashboard/viajes/viajes.component'
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { MessageService } from 'primeng/api';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    ToastModule
+    ToastModule,
+   
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
