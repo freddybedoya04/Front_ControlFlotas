@@ -13,13 +13,13 @@ import { IViaje } from 'src/app/interfaces/viaje';
 export class ViajesComponent implements OnInit {
   formulario: FormGroup;
   value: Date | undefined;
-  vehiculoSeleccionado!: IVehiculo ;
-  conductorSeleccionado!: IConductor ;
+  vehiculoSeleccionado: IVehiculo;
+  conductorSeleccionado: IConductor;
   Conductores: IConductor[] = [];
   Vehiculos: IVehiculo[] = [];
 
   constructor(private formBuilder: FormBuilder, private _peticiones: PeticionesService) {
-   
+
     this.value = new Date(Date.now());
     this.formulario = this.formBuilder.group({
       VIA_FechaInicio: [this.value, Validators.required],
@@ -38,25 +38,49 @@ export class ViajesComponent implements OnInit {
       VIA_DetallesViaje: ['', Validators.required],
       VIA_ValorViaje: ['', Validators.required]
     });
+    this.vehiculoSeleccionado = {
+      veI_Id: 0,
+      veI_CodigoVehiculo: '',
+      veI_PlacaVehiculo: '',
+      veI_Habilitado: false,
+      veI_Descripcion: '',
+      veI_Modelo: '',
+      veI_PesoLimite: 0,
+      veI_KmInicial: 0,
+      veI_FechaIngreso: undefined,
+      veI_TimeStand: undefined
+    };
+    this.conductorSeleccionado = {
+      coN_Id: 0,
+      coN_CedulaConductor: 0,
+      coN_NombresConductor: '',
+      coN_ApellidosConductor: '',
+      coN_Habilitado: false,
+      coN_FechaNacimiento: undefined,
+      coN_TipoLicencia: '',
+      coN_FechaIngreso: undefined,
+      coN_TimeStand: undefined
+    };
+
   }
 
   ngOnInit(): void {
     this.TraerVehiculos();
     this.TraerConductores();
-    
+
   }
 
   onSubmit() {
-
+    debugger;
     console.log(this.formulario)
     if (this.formulario.valid) {
       const Viaje: IViaje = {
-        viA_Id: this.formulario.value.viA_Id,
-        viA_FechaInicio: this.formulario.value.VIA_FechaInicio,
+        viA_Id: 0,
+        viA_FechaInicio: this.formulario.value.VIA_FechaInicio.toISOString(),
         viA_Empresa: this.formulario.value.VIA_Empresa,
         viA_Manifiesto: this.formulario.value.VIA_Manifiesto,
-        coN_CedulaConductor: this.conductorSeleccionado?.coN_CedulaConductor,
-        veI_CodigoVehiculo: this.vehiculoSeleccionado?.veI_CodigoVehiculo,
+        coN_CedulaConductor: this.formulario.value.CON_CedulaConductor.coN_CedulaConductor,
+        veI_CodigoVehiculo: this.formulario.value.VEI_CodigoVehiculo.veI_CodigoVehiculo,
         viA_Origen: this.formulario.value.VIA_Origen,
         viA_Destino: this.formulario.value.VIA_Destino,
         viA_KmRecorridos: this.formulario.value.VIA_KmRecorridos,
@@ -67,28 +91,44 @@ export class ViajesComponent implements OnInit {
         viA_PagoOtros: this.formulario.value.VIA_PagoOtros,
         viA_DetallesViaje: this.formulario.value.VIA_DetallesViaje,
         viA_ValorViaje: this.formulario.value.VIA_ValorViaje,
-        viA_Utilidades: this.formulario.value.viA_Utilidades,
-        viA_Habilitado: this.formulario.value.viA_Habilitado,
-        viA_TimeStand: this.formulario.value.viA_TimeStand,
-        
-      };
-    
+        viA_Utilidades: 0,
+        viA_Habilitado: true,
+        viA_TimeStand: new Date(Date.now())
 
-     // Enviar objeto Post al Back-end
+      };
+
+      Viaje.viA_Utilidades = this.CalcularUtilidades(Viaje);
+
+      // Enviar objeto Post al Back-end
       this._peticiones.AgregarViaje(Viaje).subscribe(data => {
-        console.log(data);
+        this._peticiones.SetToast('Se agrego el viaje correctamente', 1);
+
+      }, err => {
+        console.log(err)
+        this._peticiones.SetToast(err.Message, 3);
       });
+
 
       // Realiza la lógica para enviar los datos del formulario
     } else {
       // El formulario no es válido, muestra una alerta o mensaje de error
-      Object.keys(this.formulario.controls).forEach(key => {
-        const control = this.formulario.get(key);
-        if (control?.invalid) {
-          control.markAsTouched();
+      // Object.keys(this.formulario.controls).forEach(key => {
+      //   const control = this.formulario.get(key);
+      //   if (control?.invalid) {
+      //     control.markAsTouched();
+      //   }
+      // });
+
+      // Verificar si algún campo del formulario está incompleto
+        for (const control in this.formulario.controls) {
+          if (this.formulario.controls[control].invalid) {
+
+            this._peticiones.SetToast(`El campo ${control.split('_')[1]} está incompleto`, 2);
+            break;
+          }
         }
-      });
-      this._peticiones.SetToast('Por favor, complete todos los campos obligatorios.',2);
+
+
     }
   }
 
@@ -105,6 +145,15 @@ export class ViajesComponent implements OnInit {
       this.Conductores = res;
     });
   }
-  
+  CalcularUtilidades(Viaje: IViaje): number {
+    let TotalPagos = (Viaje.viA_PagoCombustible ?? 0) + (Viaje.viA_PagoConductor ?? 0) + (Viaje.viA_PagoPeajes ?? 0) + (Viaje.viA_PagoOtros ?? 0);
+    let Utilidades = (Viaje.viA_ValorViaje ?? 0) - TotalPagos;
+    return Utilidades;
+  }
+  LimpiarFomurlario() {
+    this.formulario.reset();
+
+  }
+
 }
 

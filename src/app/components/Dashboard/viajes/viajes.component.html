@@ -16,11 +16,11 @@
     </div>
     <div>
       <label for="CON_CedulaConductor">Conductor:</label>
-      <p-dropdown formControlName="CON_CedulaConductor" [options]="Conductores" optionLabel="coN_NombresConductor" placeholder="Seleccione Conductor"></p-dropdown>
+      <p-dropdown formControlName="CON_CedulaConductor" [options]="Conductores" optionLabel="coN_NombresConductor" placeholder="Seleccione Conductor" [showClear]="true"></p-dropdown>
     </div>
     <div>
       <label for="VEI_CodigoVehiculo">Código del Vehículo:</label>
-      <p-dropdown formControlName="VEI_CodigoVehiculo" [options]="Vehiculos" optionLabel="veI_PlacaVehiculo" placeholder="Seleccione Vehiculo"></p-dropdown>
+      <p-dropdown formControlName="VEI_CodigoVehiculo" [options]="Vehiculos" optionLabel="veI_PlacaVehiculo" placeholder="Seleccione Vehiculo" [showClear]="true"></p-dropdown>
     </div>
     <div>
       <label for="VIA_Origen">Origen:</label>
@@ -48,7 +48,7 @@
     </div>
     <div>
       <label for="VIA_PagoPeajes">Pago de Peajes $:</label>
-      <input type="text" pInputText formControlName="VIA_PagoPeajes">
+      <input type="number" pInputText formControlName="VIA_PagoPeajes">
     </div>
     <div>
       <label for="VIA_PagoOtros">Otros Pagos $:</label>
