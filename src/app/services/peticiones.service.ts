@@ -58,4 +58,8 @@ export class PeticionesService {
   AgregarViaje(viaje:IViaje):Observable<IViaje>{
     return this.http.post<IViaje>(this.apiUrl + '/Viajes/AgregarViaje', viaje);
   }
+  postListarViajesPorConductor(filtro: IFiltros): Observable<IViaje[]> {
+    return this.http.post<IViaje[]>(this.apiUrl + '/Viajes/ListarViajesPorConductor', filtro, { headers: this.headers });
+  }
+  
 }

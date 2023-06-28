@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IConductor } from 'src/app/interfaces/conductor';
 import { IFiltros } from 'src/app/interfaces/filtros';
 import { IVehiculo } from 'src/app/interfaces/vehiculo';
 import { IViaje } from 'src/app/interfaces/viaje';
@@ -12,12 +13,14 @@ import { PeticionesService } from 'src/app/services/peticiones.service';
 export class ReportesComponent implements OnInit {
   Vehiculos: IVehiculo[] = [];
   Viajes: IViaje[] = [];
+  conductoresSeleccionados: IConductor []=[];
   Filtro: IFiltros;
   FechaInicio: Date;
   FechaFin: Date;
   vehiculoSeleccionado: IVehiculo | undefined;
   Indicadores;
   loading: boolean = false;
+  Conductores:IConductor[] = [];
 
   public searchKeyword: string = '';
 
@@ -45,6 +48,7 @@ export class ReportesComponent implements OnInit {
   ngOnInit(): void {
     this.CargarVehiculos();
     this.CalcularFechas();
+    this.CargarConductores();
 
   }
 
@@ -55,7 +59,13 @@ export class ReportesComponent implements OnInit {
       console.log(err)
     })
   }
-
+  CargarConductores() {
+    this._peticiones.getConductores().subscribe(res => {
+      debugger;
+      res.map(x => (x.coN_NombresConductor = x.coN_NombresConductor + ' ' + x.coN_ApellidosConductor));
+      this.Conductores = res;
+    });
+  }
   CalcularFechas() {
     this.FechaFin = new Date(); // Fecha actual
 
@@ -65,16 +75,33 @@ export class ReportesComponent implements OnInit {
 
   ValidarFormulario() {
     if (this.FechaInicio.getTime() >= this.FechaFin.getTime()) {
-      this._peticiones.SetToast("La fecha inicio no puede ser mayo a la fecha fin.", 2);
+      this._peticiones.SetToast("La fecha inicio no puede ser mayor a la fecha fin.", 2);
     } else {
       if (this.vehiculoSeleccionado != null) {
         this.BuscarViajesPorVehiculo();
-      }
-      else {
+      } else if (this.conductoresSeleccionados.length > 0) {
+        this.BuscarViajesPorConductor();
+      } else {
         this.BuscarViajesPorFecha();
       }
     }
   }
+  BuscarViajesPorConductor() {
+    this.ConstruirFiltro();
+    this.Filtro.Conductor = this.conductoresSeleccionados.join(',');
+    this.loading = true;
+    this._peticiones.postListarViajesPorConductor(this.Filtro).subscribe(res => {
+      this.loading = false;
+      this._peticiones.SetToast("Se encontraron " + res.length + " viajes.", 1);
+      this.Viajes = res;
+      this.CalcularIndicadores();
+    }, err => {
+      this.loading = false;
+      this._peticiones.SetToast(err.Message, 3);
+      console.log(err);
+    });
+  }
+  
   BuscarViajesPorVehiculo() {
     this.ConstruirFiltro();
     this.loading = true;
@@ -111,6 +138,7 @@ export class ReportesComponent implements OnInit {
     this.Filtro.FechaInicio = this.FechaInicio.toISOString();
     this.Filtro.FechaFin = this.FechaFin.toISOString();
     this.Filtro.CodigoVehiculo = this.vehiculoSeleccionado?.veI_CodigoVehiculo ?? "";
+    this.Filtro.Conductor ="";
   }
 
   CalcularIndicadores() {

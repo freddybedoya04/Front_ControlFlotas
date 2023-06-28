@@ -1,5 +1,5 @@
 <div class="contenedorPricipal">
-  <h1>Ingreso de viajes</h1>
+  <h1> Registro de Viajes</h1>
   <form [formGroup]="formulario" (ngSubmit)="onSubmit">
     <div>
       <label for="VIA_FechaInicio">Fecha de Inicio:</label>
@@ -7,7 +7,7 @@
     </div>
     <div>
       <label for="VIA_Empresa">Empresa:</label>
-      <input type="text" pInputText formControlName="VIA_Empresa" matInput autocomplete="off">
+      <input type="text" pInputText formControlName="VIA_Empresa" matInput autocomplete="off" >
      
     </div>
     <div >
@@ -30,37 +30,37 @@
       <label for="VIA_Destino">Destino:</label>
       <input type="text" pInputText formControlName="VIA_Destino">
     </div>
-    <div>
+    <div >
       <label for="VIA_KmRecorridos">Kilómetros Recorridos #:</label>
-      <input type="number" pInputText formControlName="VIA_KmRecorridos">
+      <p-inputNumber class= "Numerico"  mode="decimal" locale="en-IN" formControlName="VIA_KmRecorridos"  ></p-inputNumber>
     </div>
     <div>
       <label for="VIA_Peso">Peso Carga (KG):</label>
-      <input type="number" pInputText formControlName="VIA_Peso">
+      <p-inputNumber class= "Numerico"  mode="decimal" locale="en-IN" formControlName="VIA_Peso"  ></p-inputNumber>
     </div>
     <div>
-      <label for="VIA_PagoConductor">Pago al Conductor $:</label>
-      <input type="number" pInputText formControlName="VIA_PagoConductor">
+      <label for="VIA_PagoConductor">Pago al Conductor :</label>
+      <p-inputNumber class= "Numerico" inputId="locale-us" currency="USD"  mode="currency" locale="en-US" [minFractionDigits]="0" formControlName="VIA_PagoConductor"  ></p-inputNumber>
     </div>
     <div>
-      <label for="VIA_PagoCombustible">Pago de Combustible $:</label>
-      <input type="number" pInputText formControlName="VIA_PagoCombustible">
+      <label for="VIA_PagoCombustible">Pago de Combustible :</label>
+      <p-inputNumber class= "Numerico" inputId="locale-us" currency="USD"  mode="currency" locale="en-US" [minFractionDigits]="0" formControlName="VIA_PagoCombustible"  ></p-inputNumber>
     </div>
     <div>
-      <label for="VIA_PagoPeajes">Pago de Peajes $:</label>
-      <input type="number" pInputText formControlName="VIA_PagoPeajes">
+      <label for="VIA_PagoPeajes">Pago de Peajes :</label>
+      <p-inputNumber class= "Numerico" inputId="locale-us" currency="USD"  mode="currency" locale="en-US" [minFractionDigits]="0" formControlName="VIA_PagoPeajes"  ></p-inputNumber>
     </div>
     <div>
-      <label for="VIA_PagoOtros">Otros Pagos $:</label>
-      <input type="number" pInputText formControlName="VIA_PagoOtros">
+      <label for="VIA_PagoOtros">Otros Pagos :</label>
+      <p-inputNumber class= "Numerico"inputId="locale-us" currency="USD"  mode="currency" locale="en-US" [minFractionDigits]="0" formControlName="VIA_PagoOtros"  ></p-inputNumber>
     </div>
-    <div>
+    <div >
       <label for="VIA_DetallesViaje">Detalles del Viaje:</label>
       <input type="text" pInputText formControlName="VIA_DetallesViaje">
     </div>
-    <div>
-      <label for="VIA_ValorViaje">Valor del Viaje $:</label>
-      <input type="number" pInputText formControlName="VIA_ValorViaje">
+    <div >
+      <label for="VIA_ValorViaje">Valor del Viaje :</label>
+      <p-inputNumber class= "Numerico" inputId="locale-us" currency="USD"  mode="currency" locale="en-US" [minFractionDigits]="0" formControlName="VIA_ValorViaje"  ></p-inputNumber>
     </div>
    
   </form>
