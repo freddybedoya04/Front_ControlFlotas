@@ -7,6 +7,9 @@
     height: 3rem;
     margin: 1rem;
 }
+.dialog-header{
+    margin-left: 250px;
+}
 .Titulo3{
     text-align: center;
 }
@@ -27,6 +30,8 @@ form div{
 form div button{
     margin-top: 20px;
 }
+
+  
 :host ::ng-deep .p-button {
     background: #8E2DE2;
     /* fallback for old browsers */
@@ -67,5 +72,6 @@ form div button{
     text-align: center !important;
     border: 1px solid #dee2e6;
     border-width: 0 0 1px 0;
-    padding: 1rem 1rem;
+    padding: 1.5rem 1rem;
+    overflow: auto;
 }

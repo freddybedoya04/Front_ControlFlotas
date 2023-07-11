@@ -1,7 +1,8 @@
+
 <div class="Principal">
     <!-- <h1 class="Titulo1">Reportes</h1> -->
     <div class="Formulario">
-        <form>
+        <form >
             <div>
                 <label for="VIA_FechaInicio">Fecha de Inicio:</label>
                 <!-- <input type="text" pInputText id="VIA_FechaInicio" name="VIA_FechaInicio"> -->
@@ -36,19 +37,19 @@
         </form>
     </div>
     <div class="Indicadores">
-        <p-card header="Ingresos" class="indicador" styleClass="shadow-2">
+        <p-card header="Ingresos"   styleClass="shadow-2"  >
             <h3 class="Titulo3">
-                {{Indicadores.Ingresos | number: '1.0-0'}}
+                ${{Indicadores.Ingresos | number: '1.0-0'}}
             </h3>
         </p-card>
         <p-card header="Egresos" class="indicador" styleClass="shadow-2">
             <h3 class="Titulo3">
-                {{Indicadores.Egresos | number: '1.0-0'}}
+                ${{Indicadores.Egresos | number: '1.0-0'}}
             </h3>
         </p-card>
         <p-card header="Utilidades" class="indicador" styleClass="shadow-2">
             <h3 class="Titulo3">
-                {{Indicadores.Utilidades | number: '1.0-0'}}
+                ${{Indicadores.Utilidades | number: '1.0-0'}}
             </h3>
         </p-card>
         <p-card header="Kms" class="indicador" styleClass="shadow-2">
@@ -58,19 +59,21 @@
         </p-card>
         <p-card header="Pagos" class="indicador" styleClass="shadow-2">
             <h3 class="Titulo3">
-                {{Indicadores.Pagos | number: '1.0-0'}}
+                ${{Indicadores.Pagos | number: '1.0-0'}}
             </h3>
         </p-card>
     </div>
     <p-card header="Viajes Realizados" [style]="{margin:'20px',padding:'10px'}" styleClass="shadow-2">
         <!-- <p-table [value]="Viajes" [tableStyle]="{'min-width': '50rem'}"> -->
-        <p-table #dt1 [value]="Viajes" dataKey="VIA_Id" [tableStyle]="{'min-width': '50rem','max-height':'400px'}"
+        <p-table #dt1 [value]="Viajes" dataKey="VIA_Id" [tableStyle]="{'min-width': '90rem','max-height':'600px'}"
             styleClass="p-datatable-striped p-datatable-sm" [rows]="5" [showCurrentPageReport]="true"
-            [rowsPerPageOptions]="[5,10,25,50]" [loading]="loading" [paginator]="true"
+            [rowsPerPageOptions]="[5,10,25,50]" [loading]="loading" [paginator]="true" [resizableColumns]="false"
             currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} Viajes"
-            [globalFilterFields]="['VIA_Id', 'CON_CedulaConductor']">
+            [globalFilterFields]="['VIA_Id', 'CON_CedulaConductor','VEI_CodigoVehiculo']" >
             <ng-template pTemplate="caption">
+                
                 <div class="EncabezadoTabla">
+                    <button type="button"  pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
                     <!-- <button pButton label="" class="p-button-outlined" icon="pi pi-filter-slash" (click)="dt1.reset()"></button> -->
                     <button pButton label="" icon="pi pi-filter" iconPos="left" class="p-button-raised p-button-rounded"
                         (click)="dt1.reset()"></button>
@@ -83,12 +86,12 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th>Id</th>
-                    <th>Fecha</th>
+                    <th pSortableColumn="viA_Id" style="width:5%">id <p-sortIcon field="id"></p-sortIcon></th>
+                    <th style="width:6%" >Fecha</th>
                     <th>Empresa</th>
                     <th>Manifiesto</th>
                     <th>Conductor</th>
-                    <th>Vehiculo</th>
+                    <th pSortableColumn="veI_CodigoVehiculo" style="width:8%">Vehiculo<p-sortIcon field="Vehiculo"></p-sortIcon></th>
                     <th>Origen</th>
                     <th>Destino</th>
                     <th>Kms</th>
@@ -99,13 +102,15 @@
                     <th>ValorViaje</th>
                     <th>Utilidades</th>
                     <th>Peso</th>
-                    <th>DetallesViaje</th>
+                    <th >DetallesViaje</th>
+                 
+                    
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-viaje>
                 <tr style="text-align: center;">
                     <td>{{viaje.viA_Id}}</td>
-                    <td>{{viaje.viA_FechaInicio | date}}</td>
+                    <td >{{viaje.viA_FechaInicio | date}}</td>
                     <td>{{viaje.viA_Empresa }}</td>
                     <td>{{viaje.viA_Manifiesto}}</td>
                     <td>{{viaje.coN_CedulaConductor}}</td>
@@ -120,11 +125,28 @@
                     <td>{{viaje.viA_ValorViaje | number: '1.0-0'}}</td>
                     <td>{{viaje.viA_Utilidades | number: '1.0-0'}}</td>
                     <td>{{viaje.viA_Peso | number: '1.0-0'}}</td>
-                    <td>{{viaje.viA_DetallesViaje}}</td>
-                </tr>
+                    <td>
+                        
+                        <button pButton type="submit" icon="pi pi-search" iconPos="left" [style]="{'width': '45px'}"
+                        (click)="showDialog(viaje.viA_DetallesViaje)" class="p-button-raised p-button-rounded"></button>
+                      </td>
+                      
+                      <p-dialog  [(visible)]="display" [style]="{'width': '400px'}" [modal]="true" >
+                        <ng-template pTemplate>
+                          <div >
+                            {{Detalle}}
+                            <div>
+                              <button pButton type="button"  [style]="{'margin-top': '20px'}" label="Close" (click)="hideDialog()"></button>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </p-dialog>
+                      
+                      
+                      
             </ng-template>
         </p-table>
 
     </p-card>
-
+    
 </div>

@@ -9,6 +9,9 @@ import {DropdownModule} from 'primeng/dropdown';
 import {CardModule} from 'primeng/card';
 import {TableModule} from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
+import {DialogModule} from 'primeng/dialog';
+
+
 
 @NgModule({
   declarations: [],
@@ -23,7 +26,11 @@ import { ToastModule } from 'primeng/toast';
     DropdownModule,
     CardModule,
     TableModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+   
+
+
   ],
   exports:[
     InputTextModule,
@@ -35,7 +42,10 @@ import { ToastModule } from 'primeng/toast';
     DropdownModule,
     CardModule,
     TableModule,
-    ToastModule
+    ToastModule,
+    DialogModule,
+    
+ 
   ]
 })
 export class SharedModule { }

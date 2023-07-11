@@ -15,8 +15,11 @@ import { GastosComponent } from './components/Dashboard/gastos/gastos.component'
 import { ViajesComponent } from './components/Dashboard/viajes/viajes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { MessageService, PrimeIcons } from 'primeng/api';
 import { InputNumberModule } from 'primeng/inputnumber';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +32,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
     VehiculosComponent,
     GastosComponent,
     ViajesComponent,
+
   ],
   imports: [
     BrowserModule,

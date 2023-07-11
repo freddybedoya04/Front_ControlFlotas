@@ -94,7 +94,7 @@ export class ViajesComponent implements OnInit {
         viA_Utilidades: 0,
         viA_Habilitado: true,
         viA_TimeStand: new Date(Date.now())
-
+        
       };
 
       Viaje.viA_Utilidades = this.CalcularUtilidades(Viaje);
@@ -102,7 +102,7 @@ export class ViajesComponent implements OnInit {
       // Enviar objeto Post al Back-end
       this._peticiones.AgregarViaje(Viaje).subscribe(data => {
         this._peticiones.SetToast('Se agrego el viaje correctamente', 1);
-
+        this.LimpiarFomurlario();
       }, err => {
         console.log(err)
         this._peticiones.SetToast(err.Message, 3);

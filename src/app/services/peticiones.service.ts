@@ -40,6 +40,9 @@ export class PeticionesService {
     };
     this._message.add(toast);
   }
+  getViajes(): Observable<IViaje[]> {
+    return this.http.get<IViaje[]>(`${this.apiUrl}/viajes`);
+  }
   //****************************************************vehiculos**************************************************************
   getVehiculos(): Observable<IVehiculo[]> {
     return this.http.get<IVehiculo[]>(this.apiUrl + '/Vehiculo/ListarVehiculos', { headers: this.headers })
