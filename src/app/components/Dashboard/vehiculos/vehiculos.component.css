@@ -1,0 +1,122 @@
+.contenedorPrincipal {
+    height: 100vh;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    height: 3rem;
+    margin: 1rem;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-family: "Arial", sans-serif;
+    font-size: 2.5rem;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+  
+  form div {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: 5px;
+    margin: auto;
+  }
+  
+  form div input {
+    border-radius: 10px;
+    width: 100%;
+  }
+  
+  .Numerico {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+    margin: auto;
+  }
+  
+  :host ::ng-deep .p-calendar,
+  :host ::ng-deep .p-dropdown,
+  :host ::ng-deep .p-inputtext,
+  :host ::ng-deep .p-inputNumber {
+    height: 2.5rem;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .Botones {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  :host ::ng-deep .p-button {
+    background: #8E2DE2;
+    background: -webkit-linear-gradient(to right, #4A00E0, #8E2DE2);
+    background: linear-gradient(to right, #4A00E0, #8E2DE2);
+    border-color: white;
+  }
+  
+  :host ::ng-deep .p-button:hover {
+    background-color: black;
+    border-color: black;
+  }
+  
+  :host ::ng-deep .p-inputtext.ng-dirty.ng-invalid {
+    border-color: #e24c4c;
+  }
+  
+  :host ::ng-deep .p-inputtext:enabled:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0;
+    border-color: black;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
+    .contenedorPrincipal {
+      overflow-y: scroll;
+      height: 600px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    form {
+      grid-template-columns: 1fr;
+      height: auto;
+      max-height: 500px;
+      overflow-y: scroll;
+      padding: 0;
+    }
+  
+    form div {
+      width: 100%;
+      margin: 10px 0; 
+    }
+  
+    form div input {
+      height: 2rem;
+      width: 100%;
+    }
+  
+    :host ::ng-deep .p-calendar,
+    :host ::ng-deep .p-dropdown {
+      height: 2rem;
+      width: 100%;
+      padding: 3px;
+    }
+  }

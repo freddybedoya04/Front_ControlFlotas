@@ -64,5 +64,8 @@ export class PeticionesService {
   postListarViajesPorConductor(filtro: IFiltros): Observable<IViaje[]> {
     return this.http.post<IViaje[]>(this.apiUrl + '/Viajes/ListarViajesPorConductor', filtro, { headers: this.headers });
   }
+  AgregarVehiculo (Vehiculo:IVehiculo){
+    return this.http.post <IViaje>(this.apiUrl + '/Vehiculos/AgregarVehiculo',Vehiculo)
+  }
   
 }
