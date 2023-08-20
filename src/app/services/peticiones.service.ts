@@ -65,7 +65,10 @@ export class PeticionesService {
     return this.http.post<IViaje[]>(this.apiUrl + '/Viajes/ListarViajesPorConductor', filtro, { headers: this.headers });
   }
   AgregarVehiculo (Vehiculo:IVehiculo){
-    return this.http.post <IViaje>(this.apiUrl + '/Vehiculos/AgregarVehiculo',Vehiculo)
+    return this.http.post <IViaje>(this.apiUrl + '/Vehiculo/AgregarVehiculo',Vehiculo)
+  }
+  AgregarConductor (Conductor:IConductor){
+    return this.http.post <IConductor>(this.apiUrl + '/Conductor/AgregarConductor',Conductor)
   }
   
 }

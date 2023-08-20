@@ -2,38 +2,38 @@
     <h1> Registro de Vehiculos </h1>
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
         <div>
-            <label for="veI_CodigoVehiculo">Codigo Vehiculo</label>
-            <input type="text" pInputText formControlName="veI_CodigoVehiculo" matInput autocomplete="off" >
+            <label for="VEI_CodigoVehiculo">Codigo Vehiculo</label>
+            <input type="text" pInputText formControlName="VEI_CodigoVehiculo" matInput autocomplete="off" >
            
           </div>
       <div>
-        <label for=" veI_PlacaVehiculo">Placa Vehicilo:</label>
-        <input type="text" pInputText formControlName=" veI_PlacaVehiculo" matInput autocomplete="off" >
+        <label for="VEI_PlacaVehiculo">Placa Vehiculo:</label>
+        <input type="text" pInputText formControlName="VEI_PlacaVehiculo" matInput autocomplete="off" >
        
       </div>
       <div >
-        <label for="veI_Modelo">Modelo:</label>
-        <input type="text" pInputText formControlName="veI_Modelo">
+        <label for="VEI_Modelo">Modelo:</label>
+        <input type="text" pInputText formControlName="VEI_Modelo">
       </div>
      
     
       <div >
-        <label for="veI_KmInicial">Kilómetro Inicial#:</label>
-        <p-inputNumber class= "Numerico"  mode="decimal" locale="en-IN" formControlName="veI_KmInicial"  ></p-inputNumber>
+        <label for="VEI_KmInicial">Kilómetro Inicial#:</label>
+        <p-inputNumber class= "Numerico"  mode="decimal" locale="en-IN" formControlName="VEI_KmInicial"  ></p-inputNumber>
       </div>
       <div>
-        <label for="veI_PesoLimite">Peso Carga (KG):</label>
-        <p-inputNumber class= "Numerico"  mode="decimal" locale="en-IN" formControlName="veI_PesoLimite"  ></p-inputNumber>
+        <label for="VEI_PesoLimite">Peso Carga (KG):</label>
+        <p-inputNumber class= "Numerico"  mode="decimal" locale="en-IN" formControlName="VEI_PesoLimite"  ></p-inputNumber>
       </div>
       <div >
-        <label for="veI_Descrpcion">Descripcion:</label>
-        <input type="text" pInputText formControlName="veI_Descripcion">
+        <label for="VEI_Descrpcion">Descripcion:</label>
+        <input type="text" pInputText formControlName="VEI_Descripcion">
       </div>
      
  
     </form>
     <div class="Botones">
-      <button pButton type="submit" label="Ingresar Vehiculo" icon="pi pi-check" iconPos="left" class="p-button-raised p-button-rounded" type="submit"></button>
+      <button pButton type="submit" label="IngresarVehiculo" icon="pi pi-check" iconPos="left" class="p-button-raised p-button-rounded" (click)="onSubmit()"></button>
     </div>
   </div>
   
