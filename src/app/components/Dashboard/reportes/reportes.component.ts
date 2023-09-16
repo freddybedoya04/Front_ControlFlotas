@@ -20,7 +20,7 @@ export class ReportesComponent implements OnInit {
 
   Vehiculos: IVehiculo[] = [];
   Viajes: IViaje[] = [];
-  conductoresSeleccionados: IConductor []=[];
+  conductorSeleccionado: IConductor | undefined;
   Filtro: IFiltros;
   FechaInicio: Date;
   FechaFin: Date;
@@ -152,12 +152,13 @@ Detalle: string = '';
   }
 
   ValidarFormulario() {
+    debugger;
     if (this.FechaInicio.getTime() >= this.FechaFin.getTime()) {
       this._peticiones.SetToast("La fecha inicio no puede ser mayor a la fecha fin.", 2);
     } else {
       if (this.vehiculoSeleccionado != null) {
         this.BuscarViajesPorVehiculo();
-      } else if (this.conductoresSeleccionados.length > 0) {
+      } else if (this.conductorSeleccionado != null) {
         this.BuscarViajesPorConductor();
       } else {
         this.BuscarViajesPorFecha();
@@ -166,7 +167,7 @@ Detalle: string = '';
   }
   BuscarViajesPorConductor() {
     this.ConstruirFiltro();
-    this.Filtro.Conductor = this.conductoresSeleccionados.join(',');
+    this.Filtro.Conductor = this.conductorSeleccionado?.coN_CedulaConductor.toString();
     this.loading = true;
     this._peticiones.postListarViajesPorConductor(this.Filtro).subscribe(res => {
       this.loading = false;
@@ -218,7 +219,7 @@ Detalle: string = '';
     this.Filtro.FechaInicio = this.FechaInicio.toISOString();
     this.Filtro.FechaFin = this.FechaFin.toISOString();
     this.Filtro.CodigoVehiculo = this.vehiculoSeleccionado?.veI_CodigoVehiculo ?? "";
-    this.Filtro.Conductor ="";
+    this.Filtro.Conductor = this.conductorSeleccionado?.coN_CedulaConductor.toString()?? "";
   }
   eliminarItem() {
     // Lógica para eliminar el elemento
